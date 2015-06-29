@@ -413,7 +413,7 @@ module.exports = function (grunt) {
                 constants: {
                     ENV: 'development',
                     SERVER: {
-                        URL: 'http://localhost:8080/?callback=JSON_CALLBACK'
+                        URL: 'http://black044.net:18080/gametime_war/?callback=JSON_CALLBACK'
                     }
                 }
             },
@@ -424,7 +424,7 @@ module.exports = function (grunt) {
                 constants: {
                     ENV: 'test',
                     SERVER: {
-                        URL: 'http://192.168.1.101:8080/gametime_war/?callback=JSON_CALLBACK'
+                        URL: 'http://black044.net:18080/gametime_war/?callback=JSON_CALLBACK'
                     }
                 }
             },
@@ -435,7 +435,7 @@ module.exports = function (grunt) {
                 constants: {
                     ENV: 'production',
                     SERVER: {
-                        URL: 'http://www.festivaltime.us/app/gametime_war/?callback=JSON_CALLBACK'
+                        URL: 'http://black044.net:18080/gametime_war/?callback=JSON_CALLBACK'
                     }
                 }
             }

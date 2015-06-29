@@ -10,7 +10,7 @@
     "angular-touch": "latest",
     "angular-route": "latest",
     "angular-ui-router": "latest",
-    "ionic": "~1.0.0-beta.13",
+    "ionic": "latest",
     "ionic-rating": "latest",
     "sjcl": "latest",
     "momentjs": "latest",
@@ -19,7 +19,8 @@
   },
   "devDependencies": {
     "angular-mocks": "latest",
-    "angular-scenario": "latest"
+    "angular-scenario": "latest",
+    "ionic": "driftyco/ionic-bower#1.0.0"
   },
   "appPath": "app",
   "resolutions": {
