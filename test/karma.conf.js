@@ -32,6 +32,7 @@ module.exports = function (config) {
             'bower_components/sjcl/sjcl.js',
             'bower_components/angular-moment/angular-moment.js',
             'bower_components/angular-ui-router/release/angular-ui-router.js',
+          'bower_components/angular-loading-bar/build/loading-bar.min.js',
 
             'app/scripts/**/*.js',
             'test/mock/**/*.js',

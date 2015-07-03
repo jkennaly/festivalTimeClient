@@ -15,28 +15,9 @@ angular.module('ftGameTimeApp')
         $scope.festivals.selected = null;
         $scope.festivals.purchased = FestivalPurchased;
         $scope.festivals.unpurchased = FestivalUnpurchased;
-//        console.log("Rolling");
-
         $scope.festivals.chooseFest = function () {
-
-            /*
-             var reqType;
-             reqType = $scope.festivals.purchased.indexOf($scope.festivals.selected) > -1 ? "select_purchased" : "select_unpurchased";
-
-             //        alert("Select Purchased Festival: " + form.select_purchased);
-             // submit a festival to receive the gametime data
-             var data = {
-             reqType: reqType,
-             selectedFestival: $scope.festivals.selected.id
-             };
-             //            console.log($scope.festivals.selected);
-             */
-
-
             $scope.dateCtrl.show();
-
         };
-
         $ionicModal.fromTemplateUrl('modal.html', function (modal) {
             $scope.dateCtrl = modal;
         }, {
@@ -45,27 +26,15 @@ angular.module('ftGameTimeApp')
             focusFirstInput: true
         });
 
-        /*
-         var reqChallenge = AppServer.request(data).response;
-
-         reqChallenge.success(function () {
-         $location.path("/festival/home");
-         }).error(function () {
-         $location.path("/login/failed/network");
-         });
-         return false;
-         */
-
-
-    }).controller('DateCtrl', function ($scope, $location, $state, $window, AppServer) {
+    }).controller('DateCtrl', function ($scope, $location, $state, $window, AppServer, Fest) {
         $scope.festivals.dateSelected = null;
 
         $scope.festivals.chooseDate = function () {
 
             var reqType;
-            reqType = $scope.festivals.purchased.indexOf($scope.festivals.selected) > -1 ? 'select_purchased' : 'select_unpurchased';
+            reqType = Fest.purchaseStatus($scope.festivals.selected.id) ? 'select_purchased' : 'select_unpurchased';
 
-            //        alert("Select Purchased Festival: " + form.select_purchased);
+//          alert("Select Purchased Festival: " + $scope.festivals.selected );
             // submit a festival to receive the gametime data
             var data = {
                 reqType: reqType,
@@ -75,13 +44,14 @@ angular.module('ftGameTimeApp')
             //                     console.log($scope.festivals.dateSelected);
             var reqChallenge = AppServer.request(data).response;
 
-            reqChallenge.success(function () {
-                $scope.dateCtrl.remove();
-                $location.path('ft/gametime/band/overview');
-                $window.location.reload();
-            }).error(function () {
+            reqChallenge.error(function () {
                 $scope.dateCtrl.remove();
                 $state.go('ft.login.failed.network');
+            }).then(function () {
+                $scope.dateCtrl.remove();
+                $state.go('ft.gt.band.overview');
+ //               $location.path('ft/gametime/band/overview');
+ //               $window.location.reload();
             });
             return false;
 

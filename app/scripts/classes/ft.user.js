@@ -24,9 +24,6 @@ angular.module('ftGameTimeApp')
             this.followed = function () {
                 return this.other && (FestivalSelf.follows.indexOf(parseInt(this.id)) > -1);
             };
-            this.blocked = function () {
-                return this.other && (FestivalSelf.blocks.indexOf(parseInt(this.id)) > -1);
-            };
 
 
         };

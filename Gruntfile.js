@@ -509,7 +509,23 @@ module.exports = function (grunt) {
                 configFile: 'test/karma.conf.js',
                 singleRun: true
             }
+        },
+
+      sync: {
+        main: {
+          files: [{
+            cwd: 'www',
+            src: [
+              '**', /* Include everything */
+              '!**/.htaccess' /* but exclude .htaccess files */
+            ],
+            dest: '/var/www/html/',
+          }],
+          pretend: false, // Don't do any IO. Before you run the task with `updateAndDelete` PLEASE MAKE SURE it doesn't remove too much.
+          verbose: true // Display log messages when copying files
         }
+      }
+
     });
 
 
@@ -527,11 +543,6 @@ module.exports = function (grunt) {
             'connect:livereload',
             'watch'
         ]);
-    });
-
-    grunt.registerTask('server', 'DEPRECATED TASK. Use the "serve" task instead', function (target) {
-        grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
-        grunt.task.run(['serve:' + target]);
     });
 
     grunt.registerTask('test', [
@@ -573,7 +584,8 @@ module.exports = function (grunt) {
                 'uglify',
                 'filerev',
                 'usemin',
-                'htmlmin'
+                'htmlmin',
+              'sync'
             ]);
         }
         if (target === 'ios') {

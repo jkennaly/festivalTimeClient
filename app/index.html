@@ -9,6 +9,7 @@
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/ionic/release/css/ionic.css" />
+    <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -20,12 +21,13 @@
 
 <!--
      The nav bar that will be updated as we navigate between views.
-   -->
+-->
 <ion-nav-bar class="bar-stable nav-title-slide-ios7">
     <ion-nav-back-button class="button-icon icon  ion-ios7-arrow-back">
         Back
     </ion-nav-back-button>
 </ion-nav-bar>
+
 <!--
   The views will be rendered in the <ion-nav-view> directive below
   Templates are in the /templates folder (but you could also
@@ -41,13 +43,13 @@
 <!-- build:js(.) scripts/vendor.js -->
 <!-- bower:js -->
 <script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 <script src="bower_components/angular-resource/angular-resource.js"></script>
 <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-<script src="bower_components/angular-animate/angular-animate.js"></script>
 <script src="bower_components/angular-touch/angular-touch.js"></script>
 <script src="bower_components/angular-route/angular-route.js"></script>
-<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 <script src="bower_components/ionic/release/js/ionic.js"></script>
 <script src="bower_components/ionic/release/js/ionic-angular.js"></script>
 <script src="bower_components/ionic-rating/ionic-rating.js"></script>
@@ -56,6 +58,7 @@
 <script src="bower_components/moment/moment.js"></script>
 <script src="bower_components/moment-timezone/builds/moment-timezone-with-data-2010-2020.js"></script>
 <script src="bower_components/angular-moment/angular-moment.js"></script>
+<script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 
@@ -67,6 +70,7 @@
 <script src="scripts/classes/ft.place.js"></script>
 <script src="scripts/classes/ft.set.js"></script>
 <script src="scripts/classes/ft.user.js"></script>
+<script src="scripts/classes/ft.fest.js"></script>
 <script src="scripts/controllers/band.detail.js"></script>
 <script src="scripts/controllers/band.overview.js"></script>
 <script src="scripts/controllers/ft.festival.home.js"></script>
@@ -103,6 +107,7 @@
 <script src="scripts/services/festival.unpurchased.js"></script>
 <script src="scripts/services/festival.users.js"></script>
 <script src="scripts/services/objectify.js"></script>
+<script src="scripts/directives/vendor/ng-really.js"></script>
 <!-- endbuild -->
 
 <script type="text/ng-template" id="/views/templates/social.buttons.tmpl.html"></script>

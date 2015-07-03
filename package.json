@@ -2,7 +2,8 @@
   "name": "ftgametime",
   "version": "0.0.2",
   "dependencies": {
-    "lodash": "~3.9.3"
+    "lodash": "~3.9.3",
+    "grunt-sync": "~0.2.3"
   },
   "devDependencies": {
     "grunt": "^0.4.1",
