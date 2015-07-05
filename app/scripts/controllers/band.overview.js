@@ -10,7 +10,14 @@
  * Controller of the ftGameTimeApp
  */
 angular.module('ftGameTimeApp')
-    .controller('BandOverviewCtrl', function ($scope, FestivalBands) {
+    .controller('BandOverviewCtrl', function ($scope, Band) {
+    var band = new Band;
+    $scope.$on('$ionicView.beforeEnter', function (viewInfo, state) {
+      $scope.bandIds = band.getIds();
+//      console.log('CTRL - $ionicView.beforeEnter', viewInfo, state);
+//      console.log('FestivalBands', band.getIds());
+
+    });
 
         /* $scope.bandArray = [];
 
@@ -19,5 +26,7 @@ angular.module('ftGameTimeApp')
          $scope.bandArray[i] = new Band(FestivalBands[i]);
          }*/
 
-        $scope.bandIds = FestivalBands;
+
+
+
     });

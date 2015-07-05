@@ -34,21 +34,20 @@
     </ion-content>
 </ion-view>
 
-
 <script id="modal.html" type="text/ng-template">
-    <div class="modal" ng-controller="DateCtrl">
-        <header class="bar bar-header bar-assertive">
-            <h1 class="title">Select Date</h1>
-        </header>
-        <ion-content class="has-header">
-            <h1>{{festivals.selected.sitename}}</h1>
+  <ion-modal-view>
+    <ion-header-bar>
+      <h1 class="title">Select Date</h1>
+    </ion-header-bar>
+    <ion-content class="has-header">
+      <h1>{{festivals.selected.sitename}}</h1>
 
-            <div class="padding">
-                <form ng-submit="festivals.chooseDate()">
-                    <fieldset>
-                        <div class="list">
-                            <label for="select-date" class="item item-input item-select">Select date:</label>
-                            <select id="select-date" ng-model="festivals.dateSelected" ng-options="date.name +
+      <div class="padding">
+        <form ng-submit="festivals.chooseDate()">
+          <fieldset>
+            <div class="list">
+              <label for="select-date" class="item item-input item-select">Select date:</label>
+              <select id="select-date" ng-model="festivals.dateSelected" ng-options="date.name +
                                     ' (' + (date.baseDate | date) +
                                     ': in ' + date.venueData.name +
                                     ', ' + date.venueData.city +
@@ -57,13 +56,14 @@
                                     ')' for date in festivals.selected.dateData
                                      | orderBy: 'baseDate'
                                       track by date.id">
-                            </select>
-                        </div>
-                        <button type="submit" name="submit" value="submitDate">Choose this date</button>
-                    </fieldset>
-                </form>
-
+              </select>
             </div>
-        </ion-content>
-    </div>
+            <button type="submit" name="submit" value="submitDate">Choose this date</button>
+          </fieldset>
+        </form>
+
+      </div>
+    </ion-content>
+  </ion-modal-view>
 </script>
+

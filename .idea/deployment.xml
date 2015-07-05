@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" uploadOnCheckin="fe0dbe5b-9eee-4f62-9316-a8ddd2892421">
+  <component name="PublishConfigData" serverName="Dragon Age" uploadOnCheckin="fe0dbe5b-9eee-4f62-9316-a8ddd2892421">
+    <serverData>
+      <paths name="Dragon Age">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/Documents" local="$PROJECT_DIR$/www" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
     <option name="myUploadOnCheckinName" value="local Apache" />
   </component>
 </project>

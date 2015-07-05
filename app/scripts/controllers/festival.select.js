@@ -10,21 +10,76 @@
  * Controller of the ftGameTimeApp
  */
 angular.module('ftGameTimeApp')
-    .controller('FestivalSelectCtrl', function ($scope, $ionicModal, FestivalPurchased, FestivalUnpurchased) {
-        $scope.festivals = {};
+    .controller('FestivalSelectCtrl', function ($scope, $ionicModal, $state, FestivalPurchased, FestivalUnpurchased, AppServer, Fest) {
+    var reqChallenge = null;
+      $scope.festivals = {};
         $scope.festivals.selected = null;
         $scope.festivals.purchased = FestivalPurchased;
         $scope.festivals.unpurchased = FestivalUnpurchased;
+    $ionicModal.fromTemplateUrl('modal.html', {
+      scope: $scope,
+      animation: 'slide-in-up'
+    }).then(function(modal) {
+      $scope.dateCtrl = modal;
+
+    });
+
+    $scope.openModal = function() {
+      $scope.dateCtrl.show();
+    };
+    $scope.closeModal = function() {
+      $scope.dateCtrl.hide();
+    };
+    //Cleanup the modal when we're done with it!
+    $scope.$on('$destroy', function() {
+      $scope.dateCtrl.remove();
+    });
+    // Execute action on hide modal
+    $scope.$on('modal.hidden', function() {
+      // Execute action
+    });
+    // Execute action on remove modal
+    $scope.$on('modal.removed', function() {
+      // Execute action
+    });
+
+
         $scope.festivals.chooseFest = function () {
+
+          reqChallenge = null;
+          $scope.festivals.dateSelected = null;
             $scope.dateCtrl.show();
         };
-        $ionicModal.fromTemplateUrl('modal.html', function (modal) {
-            $scope.dateCtrl = modal;
-        }, {
-            scope: $scope,
-            animation: 'slide-in-left',//'slide-left-right', 'slide-in-up', 'slide-right-left'
-            focusFirstInput: true
+    $scope.festivals.chooseDate = function () {
+
+
+        var reqType;
+        reqType = Fest.purchaseStatus($scope.festivals.selected.id) ? 'select_purchased' : 'select_unpurchased';
+
+        // submit a festival to receive the gametime data
+        var data = {
+          reqType: reqType,
+          selectedFestival: $scope.festivals.selected.id,
+          selectedDate: $scope.festivals.dateSelected.id
+        };
+        //                     console.log($scope.festivals.dateSelected);
+
+        reqChallenge = AppServer.request(data).response;
+
+        reqChallenge.error(function () {
+          $scope.dateCtrl.hide();
+          $state.go('ft.login.failed.network');
+        }).then(function () {
+          $scope.dateCtrl.hide();
+//          alert("then");
+          $state.go('ft.gt.band.overview');
+          //               $location.path('ft/gametime/band/overview');
+          //               $window.location.reload();
         });
+//            return false;
+
+
+    };
 
     }).controller('DateCtrl', function ($scope, $location, $state, $window, AppServer, Fest) {
         $scope.festivals.dateSelected = null;
@@ -34,7 +89,7 @@ angular.module('ftGameTimeApp')
             var reqType;
             reqType = Fest.purchaseStatus($scope.festivals.selected.id) ? 'select_purchased' : 'select_unpurchased';
 
-//          alert("Select Purchased Festival: " + $scope.festivals.selected );
+          alert("Select Purchased Festival: " + $scope.festivals.selected );
             // submit a festival to receive the gametime data
             var data = {
                 reqType: reqType,
@@ -42,20 +97,20 @@ angular.module('ftGameTimeApp')
                 selectedDate: $scope.festivals.dateSelected.id
             };
             //                     console.log($scope.festivals.dateSelected);
+
             var reqChallenge = AppServer.request(data).response;
 
             reqChallenge.error(function () {
-                $scope.dateCtrl.remove();
+                $scope.dateCtrl.hide();
                 $state.go('ft.login.failed.network');
             }).then(function () {
-                $scope.dateCtrl.remove();
+              $scope.dateCtrl.hide();
                 $state.go('ft.gt.band.overview');
  //               $location.path('ft/gametime/band/overview');
  //               $window.location.reload();
             });
-            return false;
+//            return false;
 
-            //           $scope.dateCtrl.hide();
         };
 
 
